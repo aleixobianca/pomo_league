@@ -1,3 +1,6 @@
+// Autor da PaginaRegistro: Rodrigo Aviliz
+// Data: 11/09/2025
+
 import React from "react";
 import {
   View,

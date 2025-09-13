@@ -1,3 +1,6 @@
+// Autor da PaginaHome: Rodrigo Aviliz
+// Data: 09/09/2025
+
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
