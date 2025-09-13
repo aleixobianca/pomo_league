@@ -1,0 +1,4 @@
+
+### Gradiente no background:
+
+npx expo install expo-linear-gradient
