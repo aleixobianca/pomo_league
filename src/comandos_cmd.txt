@@ -1,4 +1,12 @@
 
 ### Gradiente no background:
-
 npx expo install expo-linear-gradient
+
+### Drop downn menu
+npx expo install @react-native-picker/picker
+
+### Usar font family no expo
+npx expo install expo-font
+
+### font family pixelada
+npx expo install expo-font @expo-google-fonts/press-start-2p
