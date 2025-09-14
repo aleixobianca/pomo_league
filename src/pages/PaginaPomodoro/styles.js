@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     marginLeft: 35,
     marginBottom: 10,
   },
+  expLevelContainer: {},
   levelContainer: {
     width: 200,
     height: 70,
@@ -56,8 +57,10 @@ const styles = StyleSheet.create({
 
   playStopContainer: {
     flex: 1,
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
+    marginInline: 80,
   },
 });
 
