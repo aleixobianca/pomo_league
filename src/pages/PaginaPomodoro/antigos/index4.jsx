@@ -21,9 +21,9 @@ export default function PaginaPomodoro() {
   // }
 
   // Recompensa
+  const [isRunning, setIsRunning] = useState(true); // controla play/pause
   const [progress, setProgress] = useState(0);
   const [level, setLevel] = useState(0);
-  const [isRunning, setIsRunning] = useState(true); // controla play/pause
   const taxaUpdate = 0.1;
 
   function changeProgress(p) {
@@ -69,8 +69,8 @@ export default function PaginaPomodoro() {
             style={styles.pikachuImg}
           />
           {/* Barra de nível e XP */}
-          <View style={styles.expLevelContainer}>
-            <View style={styles.levelContainer}>
+          <View style={styles.infoContainer}>
+            <View style={styles.boxContainer}>
               <View style={styles.infoPokemon1}>
                 <Text style={styles.textInfoPokemon}>PIKACHU</Text>
                 <Text style={styles.textInfoPokemon}>Lv{level}</Text>
@@ -85,14 +85,14 @@ export default function PaginaPomodoro() {
                     // width: "80%",
                     backgroundColor: "#ddd",
                     borderRadius: 10,
-                    marginVertical: 10,
+                    marginVertical: 8,
                   }}
                 >
                   <View
                     style={{
                       height: "100%",
                       width: `${progress * 100}%`,
-                      backgroundColor: "blue",
+                      backgroundColor: "#5e31ff85",
                       borderRadius: 10,
                     }}
                   />
@@ -106,7 +106,7 @@ export default function PaginaPomodoro() {
         <View style={styles.playStopContainer}>
           <TouchableOpacity onPress={() => setIsRunning((r) => !r)}>
             {isRunning ? (
-              <FontAwesome6 name="pause-circle" size={70} color="black" />
+              <FontAwesome6 name="pause-circle" size={70} color="#5e31ff85" />
             ) : (
               <FontAwesome6 name="play-circle" size={70} color="#5E31FF" />
             )}
