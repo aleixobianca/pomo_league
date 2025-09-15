@@ -46,15 +46,6 @@ export default function PaginaPomodoro() {
               <FontAwesome6 name="pause-circle" size={70} color="#5e31ff85" />
             </TouchableOpacity>
           ) : (
-            // <TouchableOpacity
-            //   onPress={() => {
-            //     setIsRunning((r) => !r);
-            //     setCancelouPomodoro((r) => (r = false));
-            //   }}
-            // >
-            //   <FontAwesome6 name="play-circle" size={70} color="#5E31FF" />
-            // </TouchableOpacity>
-
             <TouchableOpacity
               onPress={() => {
                 if (escolheuPokemon) {
