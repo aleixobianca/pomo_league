@@ -15,7 +15,13 @@ const styles = StyleSheet.create({
   pokeContainer: {
     flex: 2,
     justifyContent: "center",
+    alignItems: "center",
     // backgroundColor: "#d1accdff",
+  },
+
+  pokebolaImg: {
+    width: 80,
+    height: 80,
   },
 
   playStopContainer: {

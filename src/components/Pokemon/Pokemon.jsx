@@ -28,14 +28,6 @@ export default function Pokemon(props) {
 
   return (
     <View style={stylesPokemon.container}>
-      {/* pokebola inicial */}
-      {/* <TouchableOpacity>
-        <Image
-          source={require("../../assets/img/pokebola.png")}
-          style={styles.pokebolaImg}
-        />
-      </TouchableOpacity> */}
-
       <Image
         source={require("../../assets/img/pikachu.png")}
         style={stylesPokemon.pikachuImg}
@@ -71,7 +63,7 @@ export default function Pokemon(props) {
             </View>
           </View>
         </View>
-        <Text style={stylesPokemon.textExp}>+5Exp</Text>
+        {/* <Text style={stylesPokemon.textExp}>+5Exp</Text> */}
       </View>
     </View>
   );

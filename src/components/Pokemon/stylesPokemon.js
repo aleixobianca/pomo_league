@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 50,
+    // marginLeft: 50,
     // backgroundColor: "#fff",
   },
   boxContainer: {

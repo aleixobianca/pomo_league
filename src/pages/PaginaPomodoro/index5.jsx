@@ -4,12 +4,10 @@ import styles from "./styles";
 import Background from "../../components/Background";
 import MenuButton from "../../components/MenuButton";
 import Pokemon from "../../components/Pokemon/Pokemon";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6"; //icones
-//  play/stop
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6"; //icones play/stop
 
 export default function PaginaPomodoro() {
   const [isRunning, setIsRunning] = useState(false); // controla play/pause
-  const [escolheuPokemon, setescolheuPokemon] = useState(false); // controla play/pause
 
   return (
     <View style={styles.container}>
