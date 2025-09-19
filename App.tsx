@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
-import PaginaPomodoro from "./src/pages/PaginaPomodoro/index7";
+import PaginaPomodoro from "./src/pages/PaginaPomodoro/index8";
 // import ExpBar from "./src/components/ExpBar";
 // import {
 //   useFonts,
@@ -46,11 +46,11 @@ import { useFonts as useJerseyFonts } from "@expo-google-fonts/jersey-10"; // no
 
 import { Jersey10_400Regular } from "@expo-google-fonts/jersey-10/400Regular"; // nova fonte
 
-// Manter splash visível enquanto as fontes carregam
+// Manter splash visível enquanto as fontes dos textos carregam
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  // carregar as duas fontes
+  // carregar duas fontes para o texto
   const [pixelLoaded] = usePixelFonts({
     PressStart2P_400Regular,
   });

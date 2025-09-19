@@ -19,13 +19,8 @@ export default function Pokemon(props) {
   useEffect(() => {
     if (!props.isRunningVar) return; // se não tiver dado o play, não cria timer
 
-    // setInterval: executa repetidamente um bloco de código, sempre após um intervalo fixo de tempo.
-    const timer = setInterval(() => {
-      setProgressPokemon((p) => changeProgress(p));
-    }, 1000); //cria o timer
-
-    return () => clearInterval(timer); // limpa o timer ao desmontar ou pausar
-  }, [props.isRunningVar]); // roda novamente quando isRunningVar mudar
+    setProgressPokemon((p) => changeProgress(p));
+  }, [props.isRunningVar, props.progressoTimer]); // roda novamente quando isRunningVar mudar
 
   return (
     <View style={stylesPokemon.container}>
