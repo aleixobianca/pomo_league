@@ -9,7 +9,32 @@ const styles = StyleSheet.create({
 
   timerContainer: {
     flex: 2,
+    alignItems: "center",
+    justifyContent: "center",
+    // backgroundColor: "#92ef81ff",
+  },
+  circularProgress: {
+    marginBottom: 30,
     // backgroundColor: "#8187efff",
+  },
+  centro: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+    // backgroundColor: "#d1accdff",
+  },
+  tempo: {
+    color: "#5E31FF",
+    fontSize: 75,
+    // fontWeight: "bold",
+    fontFamily: "Jersey10_400Regular",
+    textShadowColor: "black",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 1,
+  },
+  containerSlider: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   pokeContainer: {

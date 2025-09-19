@@ -3,7 +3,7 @@ import { View, Text, Image } from "react-native";
 import stylesPokemon from "./stylesPokemon";
 
 export default function Pokemon(props) {
-  const [progressPokemon, setProgressPokemon] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [level, setLevel] = useState(0);
   const taxaUpdate = 0.1;
 
@@ -21,7 +21,7 @@ export default function Pokemon(props) {
 
     // setInterval: executa repetidamente um bloco de código, sempre após um intervalo fixo de tempo.
     const timer = setInterval(() => {
-      setProgressPokemon((p) => changeProgress(p));
+      setProgress((p) => changeProgress(p));
     }, 1000); //cria o timer
 
     return () => clearInterval(timer); // limpa o timer ao desmontar ou pausar
@@ -56,7 +56,7 @@ export default function Pokemon(props) {
               <View
                 style={{
                   height: "100%",
-                  width: `${progressPokemon * 100}%`,
+                  width: `${progress * 100}%`,
                   backgroundColor: "#5e31ff85",
                   borderRadius: 10,
                 }}

@@ -11,3 +11,5 @@ npx expo install expo-font
 ### font family pixelada
 npx expo install expo-font @expo-google-fonts/press-start-2p
 
+### notificação personalizada
+npm install react-native-toast-message
