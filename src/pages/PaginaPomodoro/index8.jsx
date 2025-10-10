@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity, Image, Text } from "react-native";
-import Toast from "react-native-toast-message"; //notificação na tela persolizada
+import Toast from "react-native-toast-message";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import Slider from "@react-native-community/slider";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6"; //icones play/stop
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import styles from "./styles";
 import Background from "../../components/Background";
 import MenuButton from "../../components/MenuButton";
 import Pokemon from "../../components/Pokemon/Pokemon";
 
-export default function PaginaPomodoro() {
-  const [isRunning, setIsRunning] = useState(false); // controla play/pause
-  const [escolheuPokemon, setEscolheuPokemon] = useState(false);
+export default function PaginaPomodoro({ navigation, route }) {
+  const [isRunning, setIsRunning] = useState(false);
   const [cancelouPomodoro, setCancelouPomodoro] = useState(true);
   const [tempoInicial, setTempoInicial] = useState(3000);
-  const [segundosRestantes, setSegundosRestantes] = useState(tempoInicial); // 50 minutos
+  const [segundosRestantes, setSegundosRestantes] = useState(tempoInicial);
   const [progresso, setProgresso] = useState(0);
+  const [pokemonAtivo, setPokemonAtivo] = useState(null);
 
+  // CORREÇÃO 1: Deixamos o useEffect um pouco mais seguro
+  useEffect(() => {
+    // Verificamos se 'route' e 'route.params' existem antes de tentar ler
+    if (route && route.params && route.params.pokemonEscolhido) {
+      setPokemonAtivo(route.params.pokemonEscolhido);
+    }
+  }, [route]); // Trocamos a dependência para [route], que é mais estável
+
+  // O useEffect do timer continua igual
   useEffect(() => {
     let intervalo;
-
     if (isRunning && segundosRestantes > 0) {
       intervalo = setInterval(() => {
         setSegundosRestantes((prev) => {
@@ -37,7 +45,6 @@ export default function PaginaPomodoro() {
   const formatarTempo = () => {
     const minutos = Math.floor(segundosRestantes / 60);
     const segundos = segundosRestantes % 60;
-
     return `${minutos < 10 ? "0" + minutos : minutos}:${
       segundos < 10 ? "0" + segundos : segundos
     }`;
@@ -52,22 +59,16 @@ export default function PaginaPomodoro() {
   return (
     <View style={styles.container}>
       <Background>
-        {/* Menu */}
         <MenuButton />
 
-        {/* Temporizador */}
         <View style={styles.timerContainer}>
-          {/* slider que define o tempo*/}
           {isRunning || progresso > 0 ? null : (
             <View style={styles.containerSlider}>
               <Slider
-                style={{
-                  width: 250,
-                  height: 30,
-                }}
+                style={{ width: 250, height: 30 }}
                 minimumValue={0}
-                maximumValue={7200} //equivalente a 120 min
-                step={600} // garante que vá de 10 em 10 min
+                maximumValue={7200}
+                step={600}
                 value={segundosRestantes}
                 onValueChange={handleChange}
                 minimumTrackTintColor="#5E31FF"
@@ -76,8 +77,6 @@ export default function PaginaPomodoro() {
               />
             </View>
           )}
-
-          {/* relógio circular*/}
           <AnimatedCircularProgress
             backgroundColor="#FF3131"
             width={25}
@@ -96,14 +95,17 @@ export default function PaginaPomodoro() {
           </AnimatedCircularProgress>
         </View>
 
-        {/* Container da Pokebola ou pokemon */}
         <View style={styles.pokeContainer}>
-          {/* Mostrar pokemon se escolheuPokemon é true */}
-          {/* Mostrar pokebola se escolheuPokemon é false */}
-          {escolheuPokemon ? (
-            <Pokemon isRunningVar={isRunning} progressoTimer={progresso} />
+          {pokemonAtivo ? (
+            // CORREÇÃO 2: Garantimos que o componente <Pokemon> receba os dados
+            // que ele precisa para funcionar, incluindo os dados do pokémon ativo.
+            <Pokemon
+              pokemonData={pokemonAtivo} // Passando o objeto inteiro do Pokémon
+              isRunningVar={isRunning}
+              progressoTimer={progresso}
+            />
           ) : (
-            <TouchableOpacity onPress={() => setEscolheuPokemon((p) => !p)}>
+            <TouchableOpacity onPress={() => navigation.navigate("PokemonParty")}>
               <Image
                 source={require("../../assets/img/pokebola.png")}
                 style={styles.pokebolaImg}
@@ -112,11 +114,8 @@ export default function PaginaPomodoro() {
           )}
         </View>
 
-        {/* Container do Botão Play, Pause e Stop */}
         <View style={styles.playStopContainer}>
-          {/* Botão play e pause */}
-          <Toast />{" "}
-          {/* notificação coso clique em play sem ter escolhido um pokemon */}
+          <Toast />
           {isRunning ? (
             <TouchableOpacity onPress={() => setIsRunning((r) => !r)}>
               <FontAwesome6 name="pause-circle" size={70} color="#5e31ff85" />
@@ -124,9 +123,9 @@ export default function PaginaPomodoro() {
           ) : (
             <TouchableOpacity
               onPress={() => {
-                if (escolheuPokemon) {
+                if (pokemonAtivo) {
                   setIsRunning((r) => !r);
-                  setCancelouPomodoro((r) => (r = false));
+                  setCancelouPomodoro(false);
                 } else {
                   Toast.show({
                     type: "error",
@@ -139,13 +138,13 @@ export default function PaginaPomodoro() {
               <FontAwesome6 name="play-circle" size={70} color="#5E31FF" />
             </TouchableOpacity>
           )}
-          {/* Botão Stop */}
+          
           {cancelouPomodoro ? null : (
             <TouchableOpacity
               onPress={() => {
-                setCancelouPomodoro((c) => (c = true));
-                setIsRunning((r) => (r = false));
-                setEscolheuPokemon((e) => (e = false));
+                setCancelouPomodoro(true);
+                setIsRunning(false);
+                setPokemonAtivo(null); // Limpa o pokémon escolhido
                 setProgresso(0);
                 setSegundosRestantes(tempoInicial);
               }}
