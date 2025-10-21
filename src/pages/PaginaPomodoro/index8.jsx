@@ -17,15 +17,12 @@ export default function PaginaPomodoro({ navigation, route }) {
   const [progresso, setProgresso] = useState(0);
   const [pokemonAtivo, setPokemonAtivo] = useState(null);
 
-  // CORREÇÃO 1: Deixamos o useEffect um pouco mais seguro
   useEffect(() => {
-    // Verificamos se 'route' e 'route.params' existem antes de tentar ler
     if (route && route.params && route.params.pokemonEscolhido) {
       setPokemonAtivo(route.params.pokemonEscolhido);
     }
-  }, [route]); // Trocamos a dependência para [route], que é mais estável
+  }, [route]); 
 
-  // O useEffect do timer continua igual
   useEffect(() => {
     let intervalo;
     if (isRunning && segundosRestantes > 0) {
