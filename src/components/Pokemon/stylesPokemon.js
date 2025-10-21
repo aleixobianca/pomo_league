@@ -1,27 +1,23 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  // Container principal para centralizar
   container: {
     alignItems: "center",
     justifyContent: "center",
   },
-  // O NOVO estilo genérico para a imagem do Pokémon
   pokemonImage: {
-    width: 200,    // O tamanho que você gostou
-    height: 200,   // O tamanho que você gostou
+    width: 200,
+    height: 200,
     resizeMode: 'contain',
-    marginBottom: 10, // Espaço entre a imagem e o nome
+    marginBottom: 10,
   },
-  // O NOVO estilo genérico para o nome
   pokemonName: {
     fontSize: 22,
     fontWeight: 'bold',
     textTransform: 'capitalize',
     color: '#333',
-    fontFamily: "PressStart2P_400Regular", // Usando sua fonte pixelada
+    fontFamily: "PressStart2P_400Regular",
   },
-  // Mantendo os estilos antigos da barra de XP que você já tinha
   infoContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -42,12 +38,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "flex-start",
   },
+
   infoPokemon2: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-end",
+    alignItems: "center", 
   },
+ 
   textInfoPokemon: {
     fontFamily: "PressStart2P_400Regular",
     fontSize: 12,
