@@ -20,17 +20,17 @@ const styles = StyleSheet.create({
   centro: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 15,
     // backgroundColor: "#d1accdff",
   },
   tempo: {
     color: "#5E31FF",
-    fontSize: 75,
+    fontSize: 45,
     // fontWeight: "bold",
-    fontFamily: "Jersey10_400Regular",
+    fontFamily: 'PressStart2P_400Regular',
     textShadowColor: "black",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 1,
+    lineHeight: 60
   },
   containerSlider: {
     justifyContent: "center",

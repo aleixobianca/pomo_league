@@ -1,35 +1,38 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  // Container principal para centralizar
   container: {
-    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "#2578f5ff",
   },
-  pokebolaImg: {
-    width: 80,
-    height: 80,
+  // O NOVO estilo genérico para a imagem do Pokémon
+  pokemonImage: {
+    width: 200,    // O tamanho que você gostou
+    height: 200,   // O tamanho que você gostou
+    resizeMode: 'contain',
+    marginBottom: 10, // Espaço entre a imagem e o nome
   },
-  pikachuImg: {
-    width: 150,
-    height: 150,
-    marginLeft: 35,
-    marginBottom: 10,
+  // O NOVO estilo genérico para o nome
+  pokemonName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textTransform: 'capitalize',
+    color: '#333',
+    fontFamily: "PressStart2P_400Regular", // Usando sua fonte pixelada
   },
+  // Mantendo os estilos antigos da barra de XP que você já tinha
   infoContainer: {
     flexDirection: "row",
     alignItems: "center",
-    // marginLeft: 50,
-    // backgroundColor: "#fff",
   },
   boxContainer: {
     width: 200,
     height: 70,
     padding: 6,
-    borderWidth: 5, // espessura da borda
+    borderWidth: 5,
     borderColor: "#526B63",
-    borderRadius: 10, // cantos arredondados (opcional)
+    borderRadius: 10,
     marginRight: 5,
     backgroundColor: "#FFFFDE",
   },
@@ -38,27 +41,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    // backgroundColor: "red",
   },
   infoPokemon2: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
-    // backgroundColor: "green",
   },
-
   textInfoPokemon: {
     fontFamily: "PressStart2P_400Regular",
     fontSize: 12,
     color: "#526b63ff",
   },
-
   textExp: {
     fontFamily: "PressStart2P_400Regular",
     fontSize: 12,
     color: "#FF3131",
-    // backgroundColor: "#333",
   },
 });
 

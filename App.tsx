@@ -1,24 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as SplashScreen from 'expo-splash-screen';
+
+// IMPORTANDO A FONTE
+import { useFonts, PressStart2P_400Regular } from '@expo-google-fonts/press-start-2p';
 
 // Importa as duas telas que vamos usar
-import PaginaPomodoro from './src/pages/PaginaPomodoro/index8'; // Verifique se o caminho para o seu arquivo está certo
+import PaginaPomodoro from './src/pages/PaginaPomodoro/index8';
 import PaginaPokemonParty from './src/pages/PaginaPokemonParty';
 
-// Cria o "controlador" de telas
+// MANTÉM A SPLASH SCREEN ATIVA
+SplashScreen.preventAutoHideAsync();
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // CARREGA A FONTE
+  const [fontsLoaded] = useFonts({
+    PressStart2P_400Regular,
+  });
+
+  // SÓ ESCONDE A SPLASH SCREEN DEPOIS QUE A FONTE CARREGAR
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  // NÃO MOSTRA NADA ATÉ A FONTE ESTAR PRONTA
+  // Esta é a parte mais importante!
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  // Se a fonte já carregou, mostra o app
   return (
-    // O NavigationContainer é o "pai" de toda a navegação
     <NavigationContainer>
-      {/* O Stack.Navigator é o nosso "baralho" de telas */}
       <Stack.Navigator 
-        initialRouteName="Pomodoro" // Diz que a primeira tela a abrir é a Pomodoro
-        screenOptions={{ headerShown: false }} // Isso esconde a barra de título que aparece por padrão
+        initialRouteName="Pomodoro"
+        screenOptions={{ headerShown: false }}
       >
-        {/* Aqui declaramos quais telas fazem parte do nosso baralho */}
         <Stack.Screen name="Pomodoro" component={PaginaPomodoro} />
         <Stack.Screen name="PokemonParty" component={PaginaPokemonParty} />
       </Stack.Navigator>

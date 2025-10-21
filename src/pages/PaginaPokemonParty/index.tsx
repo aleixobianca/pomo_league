@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import Toast from 'react-native-toast-message';
+import Background from '../../components/Background';
 
 import { POKEMON_DATA } from '../../data/pokemonData';
 import styles from './styles';
@@ -27,6 +28,7 @@ export default function PaginaPokemonParty({ navigation }: { navigation: any }) 
   );
 
   return (
+    <Background>
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Escolha seu Pokémon</Text>
       
@@ -39,5 +41,6 @@ export default function PaginaPokemonParty({ navigation }: { navigation: any }) 
       
       <Toast />
     </SafeAreaView>
+    </Background>
   );
 }
