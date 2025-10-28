@@ -21,7 +21,7 @@ export default function PaginaPomodoro({ navigation, route }) {
     if (route && route.params && route.params.pokemonEscolhido) {
       setPokemonAtivo(route.params.pokemonEscolhido);
     }
-  }, [route]); 
+  }, [route]);
 
   useEffect(() => {
     let intervalo;
@@ -56,7 +56,7 @@ export default function PaginaPomodoro({ navigation, route }) {
   return (
     <View style={styles.container}>
       <Background>
-        <MenuButton />
+        <MenuButton navigation={navigation} />
 
         <View style={styles.timerContainer}>
           {isRunning || progresso > 0 ? null : (
@@ -102,7 +102,9 @@ export default function PaginaPomodoro({ navigation, route }) {
               progressoTimer={progresso}
             />
           ) : (
-            <TouchableOpacity onPress={() => navigation.navigate("PokemonParty")}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("PokemonParty")}
+            >
               <Image
                 source={require("../../assets/img/pokebola.png")}
                 style={styles.pokebolaImg}
@@ -135,7 +137,7 @@ export default function PaginaPomodoro({ navigation, route }) {
               <FontAwesome6 name="play-circle" size={70} color="#5E31FF" />
             </TouchableOpacity>
           )}
-          
+
           {cancelouPomodoro ? null : (
             <TouchableOpacity
               onPress={() => {

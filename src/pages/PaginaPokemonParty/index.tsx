@@ -1,10 +1,17 @@
-import React from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import Toast from 'react-native-toast-message';
+import React from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import Toast from "react-native-toast-message";
 
-import { POKEMON_DATA } from '../../data/pokemonData';
-import styles from './styles';
-import Background from '../../components/Background';
+import { POKEMON_DATA } from "../../data/pokemonData";
+import styles from "./styles";
+import Background from "../../components/Background";
 
 type Pokemon = {
   id: number;
@@ -16,8 +23,11 @@ type Pokemon = {
   pokedexNumber?: string;
 };
 
-export default function PaginaPokemonParty({ navigation }: { navigation: any }) {
-
+export default function PaginaPokemonParty({
+  navigation,
+}: {
+  navigation: any;
+}) {
   const sortedPokedex = POKEMON_DATA.sort((a, b) => {
     const numA = parseInt(a.pokedexNumber.substring(1));
     const numB = parseInt(b.pokedexNumber.substring(1));
@@ -26,18 +36,21 @@ export default function PaginaPokemonParty({ navigation }: { navigation: any }) 
 
   const handlePokemonPress = (pokemon: Pokemon) => {
     if (pokemon.unlocked) {
-      navigation.navigate('Pomodoro', { pokemonEscolhido: pokemon });
+      navigation.navigate("Pomodoro", { pokemonEscolhido: pokemon });
     } else {
       Toast.show({
-        type: 'error',
-        text1: 'Pokémon Bloqueado!',
+        type: "error",
+        text1: "Pokémon Bloqueado!",
         text2: `Você ainda não desbloqueou o ${pokemon.name}.`,
       });
     }
   };
 
   const renderPokemonCard = ({ item }: { item: Pokemon }) => (
-    <TouchableOpacity onPress={() => handlePokemonPress(item)} style={styles.pokemonCard}>
+    <TouchableOpacity
+      onPress={() => handlePokemonPress(item)}
+      style={styles.pokemonCard}
+    >
       {item.unlocked ? (
         <Image source={item.image} style={styles.pokemonImage} />
       ) : (
@@ -51,17 +64,17 @@ export default function PaginaPokemonParty({ navigation }: { navigation: any }) 
       <SafeAreaView style={styles.container}>
         {}
         <Text style={styles.title}>Pokédex</Text>
-        
+
         {}
-        
+
         {}
         <FlatList
-          data={sortedPokedex} 
+          data={sortedPokedex}
           renderItem={renderPokemonCard}
           keyExtractor={(item) => item.id.toString()}
           numColumns={3}
         />
-        
+
         <Toast />
       </SafeAreaView>
     </Background>

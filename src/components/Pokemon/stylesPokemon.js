@@ -6,16 +6,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   pokemonImage: {
-    width: 200,
+    width: 420,
     height: 200,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginBottom: 10,
   },
   pokemonName: {
     fontSize: 22,
-    fontWeight: 'bold',
-    textTransform: 'capitalize',
-    color: '#333',
+    fontWeight: "bold",
+    textTransform: "capitalize",
+    color: "#333",
     fontFamily: "PressStart2P_400Regular",
   },
   infoContainer: {
@@ -43,9 +43,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center", 
+    alignItems: "center",
   },
- 
+
   textInfoPokemon: {
     fontFamily: "PressStart2P_400Regular",
     fontSize: 12,
