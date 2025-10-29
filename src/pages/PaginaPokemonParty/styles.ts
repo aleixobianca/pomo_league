@@ -1,27 +1,27 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   title: {
     fontSize: 24,
-    textAlign: 'center',
+    textAlign: "center",
     marginVertical: 20,
-    color: '#333',
-    fontFamily: 'PressStart2P_400Regular',
+    color: "#5E31FF",
+    fontFamily: "PressStart2P_400Regular",
   },
   pokemonCard: {
     flex: 1,
-    alignItems: 'center',     
-    justifyContent: 'center', 
+    alignItems: "center",
+    justifyContent: "center",
     margin: 5,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: "#eee",
     borderRadius: 10,
     height: 100,
   },
@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
     height: 70,
   },
   pokedexNumberText: {
-    fontFamily: 'PressStart2P_400Regular',
+    fontFamily: "PressStart2P_400Regular",
     fontSize: 20,
-    color: '#aaa',
-    textAlign: 'center', 
+    color: "#aaa",
+    textAlign: "center",
   },
 });
 
