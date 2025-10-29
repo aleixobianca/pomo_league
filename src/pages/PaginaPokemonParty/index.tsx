@@ -1,17 +1,10 @@
 import React from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import Toast from "react-native-toast-message";
-
 import { POKEMON_DATA } from "../../data/pokemonData";
 import styles from "./styles";
 import Background from "../../components/Background";
+import BackButton from "../../components/BackButton";
 
 type Pokemon = {
   id: number;
@@ -61,13 +54,11 @@ export default function PaginaPokemonParty({
 
   return (
     <Background>
-      <SafeAreaView style={styles.container}>
-        {}
+      <View style={styles.container}>
+        <BackButton navigation={navigation} page={"Pomodoro"} />
+
         <Text style={styles.title}>Pokédex</Text>
 
-        {}
-
-        {}
         <FlatList
           data={sortedPokedex}
           renderItem={renderPokemonCard}
@@ -76,7 +67,7 @@ export default function PaginaPokemonParty({
         />
 
         <Toast />
-      </SafeAreaView>
+      </View>
     </Background>
   );
 }

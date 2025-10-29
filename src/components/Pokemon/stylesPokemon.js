@@ -4,12 +4,14 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
+    // backgroundColor: "#c1b732ff",
   },
   pokemonImage: {
-    width: 420,
-    height: 200,
+    width: 300,
+    height: 180,
     resizeMode: "contain",
-    marginBottom: 10,
+    marginBottom: -10,
+    // backgroundColor: "#943171ff",
   },
   pokemonName: {
     fontSize: 22,
@@ -21,6 +23,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: "row",
     alignItems: "center",
+    // backgroundColor: "#63df29ff",
   },
   boxContainer: {
     width: 200,
@@ -37,6 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
+    // backgroundColor: "#f3400fff",
   },
 
   infoPokemon2: {

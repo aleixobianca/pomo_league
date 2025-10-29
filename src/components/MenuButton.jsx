@@ -23,12 +23,12 @@ export default function MenuButton({ navigation }) {
             <Ionicons name="close-outline" size={24} color="black" />
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.sairBtn}
+          <Text
+            style={styles.sairText}
             onPress={() => navigation.navigate("Home")}
           >
-            <Text style={styles.sairText}>Sair</Text>
-          </TouchableOpacity>
+            Sair
+          </Text>
         </View>
       </Modal>
 
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: "Jersey10_400Regular",
     marginBottom: 15,
+    marginTop: 50,
     textAlign: "start",
   },
   menuButtonContainer: {

@@ -1,5 +1,3 @@
-// Autor da Página de Login: Rodrigo Avilez
-
 import React, { useState } from "react";
 import {
   View,
@@ -7,33 +5,18 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
-  StatusBar,
 } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import Background from "../../components/Background";
+import BackButton from "../../components/BackButton";
 
 export default function PaginaLogin({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Background>
-        <StatusBar barStyle="dark-content" />
-
-        <View style={styles.backButtonContainer}>
-          <TouchableOpacity
-            style={styles.iconButton}
-            onPress={() => navigation.navigate("Home")}
-          >
-            <Ionicons
-              name="arrow-back-circle-outline"
-              size={50}
-              color="#5E31FF"
-            />
-          </TouchableOpacity>
-        </View>
+    <Background>
+      <View style={styles.container}>
+        <BackButton navigation={navigation} page={"Home"} />
 
         <View style={styles.content}>
           <Text style={styles.title}>Login</Text>
@@ -68,56 +51,49 @@ export default function PaginaLogin({ navigation }) {
             <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
           </TouchableOpacity>
         </View>
-      </Background>
-    </SafeAreaView>
+      </View>
+    </Background>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F9FF",
-  },
-  backButtonContainer: {
-    alignItems: "flex-start",
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  iconButton: {
-    marginLeft: 15,
+    paddingHorizontal: 30,
   },
   content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 30,
+    // backgroundColor: "#c4a734ff",
   },
   title: {
     fontSize: 70,
     fontFamily: "Jersey10_400Regular",
     color: "#5E31FF",
     marginBottom: 40,
+    // backgroundColor: "#c434baff",
   },
   labelEmail: {
     alignSelf: "flex-start",
-    marginLeft: 10,
-    fontSize: 18,
+    marginLeft: 5,
+    fontFamily: "Jersey10_400Regular",
+    fontSize: 24,
     color: "#E53935",
-    fontWeight: "600",
     marginBottom: 8,
   },
   labelSenha: {
     alignSelf: "flex-start",
-    marginLeft: 10,
-    fontSize: 18,
+    marginLeft: 5,
+    fontFamily: "Jersey10_400Regular",
+    fontSize: 24,
     color: "#6A5ACD",
-    fontWeight: "600",
     marginBottom: 8,
   },
   input: {
     width: "100%",
     height: 52,
-    backgroundColor: "#EAEAEA",
+    backgroundColor: "#fff",
     borderRadius: 12,
     paddingHorizontal: 15,
     fontSize: 16,
@@ -128,7 +104,7 @@ const styles = StyleSheet.create({
   loginButton: {
     width: "100%",
     height: 52,
-    backgroundColor: "#76EDB4",
+    backgroundColor: "#66FFCC",
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
