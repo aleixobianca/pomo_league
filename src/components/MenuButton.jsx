@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Modal, Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 export default function MenuButton({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,7 +28,8 @@ export default function MenuButton({ navigation }) {
             style={styles.sairText}
             onPress={() => navigation.navigate("Home")}
           >
-            Sair
+            Sair{" "}
+            <FontAwesome6 name="arrow-right-to-bracket" size={16} color="red" />
           </Text>
         </View>
       </Modal>
