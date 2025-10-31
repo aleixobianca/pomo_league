@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Modal, Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 export default function MenuButton({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,15 +21,21 @@ export default function MenuButton({ navigation }) {
             style={styles.closeBtn}
             onPress={() => setModalVisible(!modalVisible)}
           >
-            <Ionicons name="close-outline" size={24} color="black" />
+            <FontAwesome6 name="xmark" size={34} color="#000" />
           </TouchableOpacity>
-
-          <Text
-            style={styles.sairText}
+          <TouchableOpacity
+            style={styles.sairBtn}
             onPress={() => navigation.navigate("Home")}
           >
-            Sair
-          </Text>
+            <Text style={styles.sairText}>
+              Sair{" "}
+              <FontAwesome6
+                name="arrow-right-to-bracket"
+                size={16}
+                color="red"
+              />
+            </Text>
+          </TouchableOpacity>
         </View>
       </Modal>
 
@@ -45,42 +52,44 @@ export default function MenuButton({ navigation }) {
 const styles = StyleSheet.create({
   modalView: {
     margin: 20,
-    marginRight: 100,
-    backgroundColor: "white",
-    // height: 100,
-    borderRadius: 20,
+    marginLeft: 55,
     padding: 10,
+    borderColor: "#000",
+    borderWidth: 5,
+    borderRadius: 20,
     paddingLeft: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    backgroundColor: "#FFF",
   },
   closeBtn: {
     alignItems: "flex-end",
   },
   sairBtn: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#e6e4e4fa",
+    width: 100,
+    marginBottom: 15,
     marginTop: 50,
-    alignItems: "flex-start",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   sairText: {
     color: "red",
     fontSize: 25,
     fontFamily: "Jersey10_400Regular",
-    marginBottom: 15,
-    marginTop: 50,
-    textAlign: "start",
   },
   menuButtonContainer: {
     flex: 0.5,
     alignItems: "flex-start",
     justifyContent: "center",
     marginTop: 25,
-    // backgroundColor: "red",
   },
   iconButton: {
     marginLeft: 15,

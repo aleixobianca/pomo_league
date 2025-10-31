@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, Image, Text } from "react-native";
+import { View, TouchableOpacity, Image, Text, Modal } from "react-native";
 import Toast from "react-native-toast-message";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import Slider from "@react-native-community/slider";
@@ -16,6 +16,8 @@ export default function PaginaPomodoro({ navigation, route }) {
   const [segundosRestantes, setSegundosRestantes] = useState(tempoInicial);
   const [progresso, setProgresso] = useState(0);
   const [pokemonAtivo, setPokemonAtivo] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [fimSucesso, setFimSucesso] = useState(false);
 
   useEffect(() => {
     if (route && route.params && route.params.pokemonEscolhido) {
@@ -25,14 +27,21 @@ export default function PaginaPomodoro({ navigation, route }) {
 
   useEffect(() => {
     let intervalo;
-    if (isRunning && segundosRestantes > 0) {
+    if (isRunning && segundosRestantes >= 1) {
       intervalo = setInterval(() => {
         setSegundosRestantes((prev) => {
           const novoValor = prev - 1;
           setProgresso(((tempoInicial - novoValor) / tempoInicial) * 100);
           return novoValor;
         });
-      }, 1000);
+      }, 10);
+    } else if (isRunning && segundosRestantes < 1) {
+      setFimSucesso(true);
+      setModalVisible(true);
+      setCancelouPomodoro(true);
+      setIsRunning(false);
+      setSegundosRestantes(0);
+      clearInterval(intervalo);
     } else {
       clearInterval(intervalo);
     }
@@ -42,9 +51,10 @@ export default function PaginaPomodoro({ navigation, route }) {
   const formatarTempo = () => {
     const minutos = Math.floor(segundosRestantes / 60);
     const segundos = segundosRestantes % 60;
-    return `${minutos < 10 ? "0" + minutos : minutos}:${
+    let tempo = `${minutos < 10 ? "0" + minutos : minutos}:${
       segundos < 10 ? "0" + segundos : segundos
     }`;
+    return tempo;
   };
 
   const handleChange = (val) => {
@@ -57,40 +67,68 @@ export default function PaginaPomodoro({ navigation, route }) {
     <View style={styles.container}>
       <Background>
         <MenuButton navigation={navigation} />
-
         <View style={styles.timerContainer}>
-          {isRunning || progresso > 0 ? null : (
-            <View style={styles.containerSlider}>
-              <Slider
-                style={{ width: 250, height: 30 }}
-                minimumValue={0}
-                maximumValue={7200}
-                step={600}
-                value={segundosRestantes}
-                onValueChange={handleChange}
-                minimumTrackTintColor="#5E31FF"
-                maximumTrackTintColor="#1c1acbff"
-                thumbTintColor="#5E31FF"
-              />
-            </View>
-          )}
+          <Image
+            source={require("../../assets/img/temporizador_fundo.png")}
+            style={[styles.imgTemporizador]}
+          />
           <AnimatedCircularProgress
-            backgroundColor="#FF3131"
-            width={25}
-            size={250}
+            backgroundColor="#F55656"
+            // backgroundColor="#3312f1ff"
+            width={100}
+            size={222}
             fill={progresso}
             tintColor="#5E31FF"
             rotation={0}
-            lineCap="round"
+            // lineCap="round"
             style={styles.circularProgress}
-          >
-            {() => (
-              <View style={styles.centro}>
-                <Text style={styles.tempo}>{formatarTempo()}</Text>
-              </View>
-            )}
-          </AnimatedCircularProgress>
+          ></AnimatedCircularProgress>
+          <View style={styles.centro}>
+            <Text style={styles.tempo}>{formatarTempo()}</Text>
+          </View>
         </View>
+
+        {/* Mensagem de sucesso */}
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.modalView}>
+            <TouchableOpacity
+              style={styles.closeBtn}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <FontAwesome6 name="xmark" size={24} color="black" />
+            </TouchableOpacity>
+
+            <Text
+              style={styles.sucessoText}
+              onPress={() => navigation.navigate("Home")}
+            >
+              Você conseguiu!
+            </Text>
+          </View>
+        </Modal>
+
+        {isRunning || progresso > 0 ? null : (
+          <View style={styles.containerSlider}>
+            <Slider
+              style={{ width: 250, height: 30 }}
+              minimumValue={0}
+              maximumValue={7200}
+              step={600}
+              value={segundosRestantes}
+              onValueChange={handleChange}
+              minimumTrackTintColor="#5E31FF"
+              maximumTrackTintColor="#1c1acbff"
+              thumbTintColor="#5E31FF"
+            />
+          </View>
+        )}
 
         <View style={styles.pokeContainer}>
           {pokemonAtivo ? (
