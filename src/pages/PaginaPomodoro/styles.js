@@ -4,11 +4,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
     // backgroundColor: "#9CFAC1",
   },
-
   timerContainer: {
     flex: 2,
     alignItems: "center",
@@ -17,16 +14,12 @@ const styles = StyleSheet.create({
     // backgroundColor: "#92ef81ff",
   },
   circularProgress: {
-    // marginBottom: 30,
     position: "absolute",
-    // paddingRight: 14,
-    // paddingBottom: 10,
     // backgroundColor: "#8187efff",
   },
   centro: {
     justifyContent: "center",
     alignItems: "center",
-    // marginTop: 15,
     // backgroundColor: "#1c23e2ff",
   },
   imgTemporizador: {
@@ -35,12 +28,10 @@ const styles = StyleSheet.create({
     height: 300,
     marginLeft: 15,
     marginTop: 10,
-    // aspectRatio: 1 / 1.2,
     resizeMode: "contain",
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    // marginLeft: 10,
     // backgroundColor: "#e6e210ff",
   },
   tempo: {
@@ -72,12 +63,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    justifyContent: "center",
   },
   modalSucessoText: {
     marginBottom: 10,
     color: "#FFF",
-    // color: "#66FFCC",
     fontSize: 50,
     fontFamily: "Jersey10_400Regular",
     textShadowColor: "#000",
