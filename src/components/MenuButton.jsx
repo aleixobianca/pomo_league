@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     fontFamily: "Jersey10_400Regular",
   },
   menuButtonContainer: {
-    flex: 0.5,
+    flex: 0.3,
     alignItems: "flex-start",
     justifyContent: "center",
     marginTop: 25,

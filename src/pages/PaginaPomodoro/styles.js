@@ -7,11 +7,15 @@ const styles = StyleSheet.create({
     // backgroundColor: "#9CFAC1",
   },
   timerContainer: {
-    flex: 2,
+    // flex: 2,
+    height: 250,
+    // backgroundColor: "#f8f409ff",
+  },
+  innerTimerContainer: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
-    // backgroundColor: "#92ef81ff",
   },
   circularProgress: {
     position: "absolute",
@@ -21,18 +25,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     // backgroundColor: "#1c23e2ff",
-  },
-  imgTemporizador: {
-    flex: 1,
-    width: 300,
-    height: 300,
-    marginLeft: 15,
-    marginTop: 10,
-    resizeMode: "contain",
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    // backgroundColor: "#e6e210ff",
   },
   tempo: {
     color: "#FFF",
@@ -44,6 +36,64 @@ const styles = StyleSheet.create({
     lineHeight: 60,
     position: "absolute",
     // backgroundColor: "#d1accdff",
+  },
+  containerSlider: {
+    // flex: 0.04,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "bottom",
+    // backgroundColor: "#eacc0bff",
+  },
+  breakWorkContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    // backgroundColor: "#e709e3ff",
+  },
+  innerBreakWorkContainer: {
+    flexDirection: "row",
+    width: "100%",
+    padding: 5,
+    justifyContent: "center",
+    // backgroundColor: "#23e709ff",
+  },
+
+  picker: {
+    width: 120,
+    // color: "#5E31FF",
+    marginLeft: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "#e709d5ff",
+  },
+  pickerItemBreak: {
+    color: "#5E31FF",
+    fontSize: 18,
+  },
+  pickerItemWork: {
+    color: "#F55656",
+    fontSize: 18,
+  },
+  pokeContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "#d1accdff",
+  },
+  pokebolaImg: {
+    width: 80,
+    height: 80,
+    // backgroundColor: "#23e709ff",
+  },
+  playStopContainer: {
+    // flex: 0.8,
+    height: 100,
+    flexDirection: "row",
+    // alignItems: "flex-start",
+    justifyContent: "space-around",
+    marginInline: 80,
+    padding: 5,
+    // backgroundColor: "#f6de64ff",
   },
   modalView: {
     margin: 40,
@@ -64,7 +114,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  modalSucessoText: {
+  modalText: {
     marginBottom: 10,
     color: "#FFF",
     fontSize: 50,
@@ -73,32 +123,26 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: -2, height: 2 },
     textShadowRadius: 1,
   },
-  containerSlider: {
-    justifyContent: "center",
+  modalContinuarBtn: {
+    backgroundColor: "#66FFCC",
+    width: "80%",
+    paddingVertical: 15,
+    borderRadius: 10,
+    marginBottom: 15,
     alignItems: "center",
-    position: "bottom",
-    // backgroundColor: "#eacc0bff",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-
-  pokeContainer: {
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "center",
-    // backgroundColor: "#d1accdff",
-  },
-
-  pokebolaImg: {
-    width: 80,
-    height: 80,
-  },
-
-  playStopContainer: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    marginInline: 80,
-    // backgroundColor: "#f6de64ff",
+  modalContinuarBtnText: {
+    fontFamily: "Jersey10_400Regular",
+    color: "#5E31FF",
+    fontSize: 24,
   },
 });
 

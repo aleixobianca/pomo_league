@@ -4,11 +4,13 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "#c1b732ff",
+    flex: 1,
+    // backgroundColor: "#4532c1ff",
   },
   pokemonImage: {
     width: 300,
-    height: 180,
+    // flex: 1,
+    height: "70%",
     resizeMode: "contain",
     marginBottom: -10,
     // backgroundColor: "#943171ff",
