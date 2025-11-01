@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     // backgroundColor: "#9CFAC1",
   },
   timerContainer: {
-    // flex: 2,
     height: 250,
     // backgroundColor: "#f8f409ff",
   },
@@ -38,7 +37,6 @@ const styles = StyleSheet.create({
     // backgroundColor: "#d1accdff",
   },
   containerSlider: {
-    // flex: 0.04,
     justifyContent: "center",
     alignItems: "center",
     position: "bottom",
@@ -60,7 +58,6 @@ const styles = StyleSheet.create({
 
   picker: {
     width: 120,
-    // color: "#5E31FF",
     marginLeft: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -86,10 +83,8 @@ const styles = StyleSheet.create({
     // backgroundColor: "#23e709ff",
   },
   playStopContainer: {
-    // flex: 0.8,
     height: 100,
     flexDirection: "row",
-    // alignItems: "flex-start",
     justifyContent: "space-around",
     marginInline: 80,
     padding: 5,
@@ -102,7 +97,6 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     borderWidth: 5,
     borderRadius: 20,
-    // backgroundColor: "#66FFCC",
     backgroundColor: "#5E31FF",
   },
   modalCloseBtn: {
@@ -114,7 +108,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  modalText: {
+  modalSucessoText: {
+    marginBottom: 10,
+    color: "#FFF",
+    fontSize: 50,
+    fontFamily: "Jersey10_400Regular",
+    textShadowColor: "#000",
+    textShadowOffset: { width: -2, height: 2 },
+    textShadowRadius: 1,
+  },
+  modalWorkText: {
     marginBottom: 10,
     color: "#FFF",
     fontSize: 50,
@@ -124,11 +127,11 @@ const styles = StyleSheet.create({
     textShadowRadius: 1,
   },
   modalContinuarBtn: {
-    backgroundColor: "#66FFCC",
-    width: "80%",
+    backgroundColor: "#FFF",
+    width: "60%",
     paddingVertical: 15,
     borderRadius: 10,
-    marginBottom: 15,
+    margin: 15,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {

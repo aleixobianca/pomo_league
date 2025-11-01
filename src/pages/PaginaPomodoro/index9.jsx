@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity, Image, Text, Modal } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import Toast from "react-native-toast-message";
@@ -12,8 +12,8 @@ import Pokemon from "../../components/Pokemon/Pokemon";
 
 export default function PaginaPomodoro({ navigation, route }) {
   const [isRunning, setIsRunning] = useState(false);
-  const [tempoInicial, setTempoInicial] = useState(3000);
-  const [segundosRestantes, setSegundosRestantes] = useState(tempoInicial);
+  const [workDuration, setWorkDuration] = useState(60 * 50);
+  const [segundosRestantes, setSegundosRestantes] = useState(workDuration);
   const [progresso, setProgresso] = useState(0);
   const [cancelouPomodoro, setCancelouPomodoro] = useState(true);
   const [fimSucesso, setFimSucesso] = useState(false);
@@ -21,11 +21,10 @@ export default function PaginaPomodoro({ navigation, route }) {
   const [modalBreakWorkVisible, setModalBreakWorkVisible] = useState(false);
   const [breakDuration, setBreakDuration] = useState(60 * 5);
   const [workUnits, setWorkUnits] = useState(2);
-  // const [workUnitsAtual, setWorkUnitsAtual] = useState(1);
-  const workUnitsAtual = useRef(1);
+  const [workUnitsAtual, setWorkUnitsAtual] = useState(1);
   const [nextBreakLiberado, setNextBreakLiberado] = useState(true);
   const [pokemonAtivo, setPokemonAtivo] = useState(null);
-  const [sizeViewTimer, setSizeViewTimer] = useState(0);
+
   const breakItems = [
     { id: 0, value: 60 * 1, label: "1 min" },
     { id: 1, value: 60 * 5, label: "5 min" },
@@ -51,54 +50,9 @@ export default function PaginaPomodoro({ navigation, route }) {
     }
   }, [route]);
 
-  // useEffect(() => {
-  //   let timer;
-  //   if (isRunning && segundosRestantes >= 1) {
-  //     timer = setInterval(() => {
-  //       setSegundosRestantes((prev) => {
-  //         const novoValor = prev - 1;
-  //         setProgresso(((tempoInicial - novoValor) / tempoInicial) * 100);
-  //         return novoValor;
-  //       });
-  //     }, 10);
-  //   } else if (isRunning && segundosRestantes < 1) {
-  //     setFimSucesso(true);
-  //     setModalVisible(true);
-  //     setCancelouPomodoro(true);
-  //     setIsRunning(false);
-  //     setSegundosRestantes(0);
-  //     clearInterval(timer);
-  //   } else {
-  //     clearInterval(timer);
-  //   }
-  //   return () => clearInterval(timer);
-  // }, [isRunning, segundosRestantes, tempoInicial]);
-
-  // useEffect(() => {
-  //   if (!isRunning) return;
-  //   let timer = setInterval(() => {
-  //     setSegundosRestantes((prev) => {
-  //       const novoValor = prev - 1;
-  //       setProgresso(((tempoInicial - novoValor) / tempoInicial) * 100);
-  //       return novoValor;
-  //     });
-  //   }, 250);
-
-  //   return () => clearInterval(timer);
-  // }, [isRunning, tempoInicial]);
-
-  // useEffect(() => {
-  //   if (isRunning && segundosRestantes < 1) {
-  //     setIsRunning(false);
-  //     setFimSucesso(true);
-  //     setModalVisible(true);
-  //     setCancelouPomodoro(true);
-  //     setSegundosRestantes(0);
-  //   }
-  // }, [isRunning, segundosRestantes]);
-
   useEffect(() => {
     if (!isRunning) return;
+    const tempoInicial = segundosRestantes;
     let timer = setInterval(() => {
       setSegundosRestantes((prev) => {
         let novoValor = prev - 1;
@@ -108,30 +62,15 @@ export default function PaginaPomodoro({ navigation, route }) {
     }, 250);
 
     return () => clearInterval(timer);
-  }, [isRunning, tempoInicial, nextBreakLiberado]);
+  }, [isRunning, workDuration]);
 
-  // useEffect(() => {
-  //   if (!isRunning) return;
-
-  //   if (isRunning && segundosRestantes < 1) {
-  //     if (workUnitsToGo < 1) {
-  //       setIsRunning(false);
-  //       setFimSucesso(true);
-  //       setModalSucessoVisible(true);
-  //       setCancelouPomodoro(true);
-  //       setSegundosRestantes(0);
-  //     } else if (nextBreakLiberado) {
-  //       setModalBreakVisible(true);
-  //       setSegundosRestantes(breakDuration);
-  //       setNextBreakLiberado(false);
-  //     } else {
-  //       setModalBreakVisible(true);
-  //       setSegundosRestantes(tempoInicial);
-  //       setWorkUnitsToGo((unidades) => unidades - 1);
-  //       setNextBreakLiberado(true);
-  //     }
-  //   }
-  // }, [isRunning, segundosRestantes, breakDuration]);
+  function atualizarTimer(novoPeriodo) {
+    setIsRunning(false);
+    setProgresso(0);
+    setSegundosRestantes(novoPeriodo);
+    setNextBreakLiberado((b) => !b);
+    setModalBreakWorkVisible(true);
+  }
 
   useEffect(() => {
     if (!isRunning) return;
@@ -141,26 +80,22 @@ export default function PaginaPomodoro({ navigation, route }) {
       if (workUnitsAtual >= workUnits) {
         setIsRunning(false);
         setFimSucesso(true);
-        setModalSucessoVisible(true);
         setCancelouPomodoro(true);
         setSegundosRestantes(0);
+        setModalSucessoVisible(true);
       } else if (nextBreakLiberado) {
-        setModalBreakWorkVisible(true);
-        setSegundosRestantes(breakDuration);
-        setNextBreakLiberado(false);
+        atualizarTimer(breakDuration);
       } else {
-        setModalBreakWorkVisible(true);
-        setSegundosRestantes(tempoInicial);
-        setNextBreakLiberado(true);
-        workUnitsAtual.current++;
+        setWorkUnitsAtual((value) => value + 1);
+        atualizarTimer(workDuration);
       }
     }
   }, [
     isRunning,
     segundosRestantes,
-    tempoInicial,
+    workDuration,
     breakDuration,
-    // workUnitsAtual,
+    workUnitsAtual,
     workUnits,
     nextBreakLiberado,
   ]);
@@ -176,7 +111,7 @@ export default function PaginaPomodoro({ navigation, route }) {
 
   const handleChangeSlider = (val) => {
     setSegundosRestantes(val);
-    setTempoInicial(val);
+    setWorkDuration(val);
     setProgresso(0);
   };
 
@@ -196,9 +131,10 @@ export default function PaginaPomodoro({ navigation, route }) {
   const stopBtnOnPress = () => {
     setCancelouPomodoro(true);
     setIsRunning(false);
-    setPokemonAtivo(null); // Limpa o pokémon escolhido
     setProgresso(0);
-    setSegundosRestantes(tempoInicial);
+    setSegundosRestantes(workDuration);
+    setNextBreakLiberado(true);
+    setPokemonAtivo(null); // Limpa o pokémon escolhido
   };
 
   const reiniciarBtnOnPress = () => {
@@ -210,39 +146,31 @@ export default function PaginaPomodoro({ navigation, route }) {
     <Background>
       <View style={styles.container}>
         <MenuButton navigation={navigation} />
-        <View
-          style={styles.timerContainer}
-          onLayout={(event) => {
-            const { height } = event.nativeEvent.layout;
-            setSizeViewTimer(height); // define o tamanho igual à altura da View
-          }}
-        >
-          {sizeViewTimer > 0 && (
-            <View style={styles.innerTimerContainer}>
-              <AnimatedCircularProgress
-                backgroundColor="#F55656"
-                width={125}
-                size={250}
-                fill={progresso}
-                tintColor="#5E31FF"
-                rotation={0}
-                // lineCap="round"
-                style={styles.circularProgress}
-              />
-              <View style={styles.centro}>
-                <Text style={styles.tempo}>{formatarTempo()}</Text>
-              </View>
+        <View style={styles.timerContainer}>
+          <View style={styles.innerTimerContainer}>
+            <AnimatedCircularProgress
+              backgroundColor="#F55656"
+              width={125}
+              size={250}
+              fill={progresso}
+              tintColor="#5E31FF"
+              rotation={0}
+              // lineCap="round"
+              style={styles.circularProgress}
+            />
+            <View style={styles.centro}>
+              <Text style={styles.tempo}>{formatarTempo()}</Text>
             </View>
-          )}
+          </View>
         </View>
 
-        {isRunning || progresso > 0 ? null : (
+        {cancelouPomodoro && !fimSucesso && (
           <View style={styles.containerSlider}>
             <Slider
               style={{ width: 250, height: 30 }}
               minimumValue={0}
               maximumValue={7200}
-              step={60 * 5}
+              step={60 * 2}
               value={segundosRestantes}
               onValueChange={handleChangeSlider}
               minimumTrackTintColor="#5E31FF"
@@ -251,7 +179,7 @@ export default function PaginaPomodoro({ navigation, route }) {
             />
           </View>
         )}
-        {progresso == 0 && (
+        {cancelouPomodoro && !fimSucesso && (
           <View style={styles.breakWorkContainer}>
             <View style={styles.innerBreakWorkContainer}>
               <FontAwesome6 name="mug-hot" size={50} color="#5E31FF" />
@@ -359,11 +287,15 @@ export default function PaginaPomodoro({ navigation, route }) {
                 style={[styles.modalContent, { backgroundColor: "#66FFCC" }]}
               >
                 <FontAwesome6 name="suitcase" size={90} color="#F55656" />
+                <Text style={styles.modalWorkText}>
+                  {workUnitsAtual}/{workUnits}
+                </Text>
                 <TouchableOpacity
                   style={styles.modalContinuarBtn}
-                  onPress={() =>
-                    setModalBreakWorkVisible(!modalBreakWorkVisible)
-                  }
+                  onPress={() => {
+                    setIsRunning(true);
+                    setModalBreakWorkVisible(!modalBreakWorkVisible);
+                  }}
                 >
                   <Text style={styles.modalContinuarBtnText}>Continuar</Text>
                 </TouchableOpacity>
@@ -375,9 +307,10 @@ export default function PaginaPomodoro({ navigation, route }) {
                 <FontAwesome6 name="mug-hot" size={90} color="#5E31FF" />
                 <TouchableOpacity
                   style={styles.modalContinuarBtn}
-                  onPress={() =>
-                    setModalBreakWorkVisible(!modalBreakWorkVisible)
-                  }
+                  onPress={() => {
+                    setIsRunning(true);
+                    setModalBreakWorkVisible(!modalBreakWorkVisible);
+                  }}
                 >
                   <Text style={styles.modalContinuarBtnText}>Continuar</Text>
                 </TouchableOpacity>
@@ -398,7 +331,9 @@ export default function PaginaPomodoro({ navigation, route }) {
           <View style={styles.modalView}>
             <TouchableOpacity
               style={styles.modalCloseBtn}
-              onPress={() => setModalSucessoVisible(!modalSucessoVisible)}
+              onPress={() => {
+                setModalSucessoVisible(!modalSucessoVisible);
+              }}
             >
               <FontAwesome6 name="xmark" size={34} color="#000" />
             </TouchableOpacity>
