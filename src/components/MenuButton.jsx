@@ -25,7 +25,9 @@ export default function MenuButton({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.sairBtn}
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => {
+              navigation.navigate("Home");
+            }}
           >
             <Text style={styles.sairText}>
               Sair{" "}
@@ -86,10 +88,11 @@ const styles = StyleSheet.create({
     fontFamily: "Jersey10_400Regular",
   },
   menuButtonContainer: {
-    flex: 0.5,
+    // flex: 0,
     alignItems: "flex-start",
     justifyContent: "center",
     marginTop: 25,
+    // backgroundColor: "#666",
   },
   iconButton: {
     marginLeft: 15,

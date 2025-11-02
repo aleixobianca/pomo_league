@@ -6,12 +6,23 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: "#9CFAC1",
   },
+  iconTopoBreakWork: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 30,
+    marginTop: -20,
+    // backgroundColor: "#f8f409ff",
+  },
   timerContainer: {
-    flex: 2,
+    height: 250,
+    marginTop: -20,
+    // backgroundColor: "#f8f409ff",
+  },
+  innerTimerContainer: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
-    // backgroundColor: "#92ef81ff",
   },
   circularProgress: {
     position: "absolute",
@@ -21,18 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     // backgroundColor: "#1c23e2ff",
-  },
-  imgTemporizador: {
-    flex: 1,
-    width: 300,
-    height: 300,
-    marginLeft: 15,
-    marginTop: 10,
-    resizeMode: "contain",
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    // backgroundColor: "#e6e210ff",
   },
   tempo: {
     color: "#FFF",
@@ -45,6 +44,61 @@ const styles = StyleSheet.create({
     position: "absolute",
     // backgroundColor: "#d1accdff",
   },
+  containerSlider: {
+    flex: 0.3,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "bottom",
+    // backgroundColor: "#eacc0bff",
+  },
+  breakWorkContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    // backgroundColor: "#e709e3ff",
+  },
+  innerBreakWorkContainer: {
+    flexDirection: "row",
+    width: "100%",
+    padding: 5,
+    justifyContent: "center",
+    // backgroundColor: "#23e709ff",
+  },
+
+  picker: {
+    width: 120,
+    marginLeft: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "#e709d5ff",
+  },
+  pickerItemBreak: {
+    color: "#5E31FF",
+    fontSize: 18,
+  },
+  pickerItemWork: {
+    color: "#F55656",
+    fontSize: 18,
+  },
+  pokeContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "#d1accdff",
+  },
+  pokebolaImg: {
+    width: 80,
+    height: 80,
+    // backgroundColor: "#23e709ff",
+  },
+  playStopContainer: {
+    height: 100,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginInline: 80,
+    padding: 5,
+    // backgroundColor: "#f6de64ff",
+  },
   modalView: {
     margin: 40,
     marginTop: 50,
@@ -52,7 +106,6 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     borderWidth: 5,
     borderRadius: 20,
-    // backgroundColor: "#66FFCC",
     backgroundColor: "#5E31FF",
   },
   modalCloseBtn: {
@@ -73,32 +126,35 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: -2, height: 2 },
     textShadowRadius: 1,
   },
-  containerSlider: {
-    justifyContent: "center",
-    alignItems: "center",
-    position: "bottom",
-    // backgroundColor: "#eacc0bff",
+  modalWorkText: {
+    marginBottom: 10,
+    color: "#FFF",
+    fontSize: 50,
+    fontFamily: "Jersey10_400Regular",
+    textShadowColor: "#000",
+    textShadowOffset: { width: -2, height: 2 },
+    textShadowRadius: 1,
   },
-
-  pokeContainer: {
-    flex: 2,
-    justifyContent: "center",
+  modalContinuarBtn: {
+    backgroundColor: "#FFF",
+    width: "60%",
+    paddingVertical: 15,
+    borderRadius: 10,
+    margin: 15,
     alignItems: "center",
-    // backgroundColor: "#d1accdff",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-
-  pokebolaImg: {
-    width: 80,
-    height: 80,
-  },
-
-  playStopContainer: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    marginInline: 80,
-    // backgroundColor: "#f6de64ff",
+  modalContinuarBtnText: {
+    fontFamily: "Jersey10_400Regular",
+    color: "#5E31FF",
+    fontSize: 24,
   },
 });
 
