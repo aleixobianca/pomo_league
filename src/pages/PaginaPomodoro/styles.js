@@ -6,8 +6,16 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: "#9CFAC1",
   },
+  iconTopoBreakWork: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 30,
+    marginTop: -20,
+    // backgroundColor: "#f8f409ff",
+  },
   timerContainer: {
     height: 250,
+    marginTop: -20,
     // backgroundColor: "#f8f409ff",
   },
   innerTimerContainer: {
@@ -37,6 +45,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "#d1accdff",
   },
   containerSlider: {
+    flex: 0.3,
     justifyContent: "center",
     alignItems: "center",
     position: "bottom",

@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     // flex: 1,
     height: "70%",
     resizeMode: "contain",
-    marginBottom: -10,
+    marginBottom: -20,
+    marginTop: -20,
     // backgroundColor: "#943171ff",
   },
   pokemonName: {

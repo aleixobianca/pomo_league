@@ -13,13 +13,14 @@ import Pokemon from "../../components/Pokemon/Pokemon";
 export default function PaginaPomodoro({ navigation, route }) {
   const [isRunning, setIsRunning] = useState(false);
   const [workDuration, setWorkDuration] = useState(60 * 50);
+  const [breakDuration, setBreakDuration] = useState(60 * 5);
+  const [tempoInicial, setTempoInicial] = useState(workDuration);
   const [segundosRestantes, setSegundosRestantes] = useState(workDuration);
   const [progresso, setProgresso] = useState(0);
   const [cancelouPomodoro, setCancelouPomodoro] = useState(true);
   const [fimSucesso, setFimSucesso] = useState(false);
   const [modalSucessoVisible, setModalSucessoVisible] = useState(false);
   const [modalBreakWorkVisible, setModalBreakWorkVisible] = useState(false);
-  const [breakDuration, setBreakDuration] = useState(60 * 5);
   const [workUnits, setWorkUnits] = useState(2);
   const [workUnitsAtual, setWorkUnitsAtual] = useState(1);
   const [nextBreakLiberado, setNextBreakLiberado] = useState(true);
@@ -52,9 +53,12 @@ export default function PaginaPomodoro({ navigation, route }) {
 
   useEffect(() => {
     if (!isRunning) return;
-    const tempoInicial = segundosRestantes;
+    // const tempoInicial = segundosRestantes;
     let timer = setInterval(() => {
       setSegundosRestantes((prev) => {
+        if (prev < 1) {
+          return () => clearInterval(timer);
+        }
         let novoValor = prev - 1;
         setProgresso(((tempoInicial - novoValor) / tempoInicial) * 100);
         return novoValor;
@@ -62,12 +66,13 @@ export default function PaginaPomodoro({ navigation, route }) {
     }, 250);
 
     return () => clearInterval(timer);
-  }, [isRunning, workDuration]);
+  }, [isRunning, workDuration, tempoInicial]);
 
   function atualizarTimer(novoPeriodo) {
     setIsRunning(false);
     setProgresso(0);
     setSegundosRestantes(novoPeriodo);
+    setTempoInicial(novoPeriodo);
     setNextBreakLiberado((b) => !b);
     setModalBreakWorkVisible(true);
   }
@@ -111,6 +116,7 @@ export default function PaginaPomodoro({ navigation, route }) {
 
   const handleChangeSlider = (val) => {
     setSegundosRestantes(val);
+    setTempoInicial(val);
     setWorkDuration(val);
     setProgresso(0);
   };
@@ -146,6 +152,18 @@ export default function PaginaPomodoro({ navigation, route }) {
     <Background>
       <View style={styles.container}>
         <MenuButton navigation={navigation} />
+
+        {progresso > 0 &&
+          (nextBreakLiberado ? (
+            <View style={styles.iconTopoBreakWork}>
+              <FontAwesome6 name="suitcase" size={50} color="#F55656" />
+            </View>
+          ) : (
+            <View style={styles.iconTopoBreakWork}>
+              <FontAwesome6 name="mug-hot" size={60} color="#5E31FF" />
+            </View>
+          ))}
+
         <View style={styles.timerContainer}>
           <View style={styles.innerTimerContainer}>
             <AnimatedCircularProgress
@@ -182,7 +200,7 @@ export default function PaginaPomodoro({ navigation, route }) {
         {cancelouPomodoro && !fimSucesso && (
           <View style={styles.breakWorkContainer}>
             <View style={styles.innerBreakWorkContainer}>
-              <FontAwesome6 name="mug-hot" size={50} color="#5E31FF" />
+              <FontAwesome6 name="mug-hot" size={55} color="#5E31FF" />
               <Picker
                 selectedValue={breakDuration}
                 onValueChange={(itemValue) => setBreakDuration(itemValue)}
