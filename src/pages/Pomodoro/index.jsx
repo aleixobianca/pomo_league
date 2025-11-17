@@ -53,7 +53,6 @@ export default function PaginaPomodoro({ navigation, route }) {
 
   useEffect(() => {
     if (!isRunning) return;
-    // const tempoInicial = segundosRestantes;
     let timer = setInterval(() => {
       setSegundosRestantes((prev) => {
         if (prev < 1) {
@@ -186,9 +185,9 @@ export default function PaginaPomodoro({ navigation, route }) {
           <View style={styles.containerSlider}>
             <Slider
               style={{ width: 250, height: 30 }}
-              minimumValue={0}
+              minimumValue={60 * 15}
               maximumValue={7200}
-              step={60 * 2}
+              step={60 * 5}
               value={segundosRestantes}
               onValueChange={handleChangeSlider}
               minimumTrackTintColor="#5E31FF"
