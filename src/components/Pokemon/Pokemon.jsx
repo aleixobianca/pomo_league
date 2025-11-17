@@ -5,7 +5,7 @@ import stylesPokemon from "./stylesPokemon";
 export default function Pokemon({ pokemonData, isRunningVar, progressoTimer }) {
   const [progressPokemon, setProgressPokemon] = useState(0);
   const [level, setLevel] = useState(0);
-  const taxaUpdate = 0.1;
+  const taxaUpdate = 0.001;
 
   if (!pokemonData) {
     return null;

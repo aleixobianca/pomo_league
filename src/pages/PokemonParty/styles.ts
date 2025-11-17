@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     color: "#5E31FF",
     fontFamily: "PressStart2P_400Regular",
+    textShadowColor: "black",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 1,
+    lineHeight: 60,
   },
   pokemonCard: {
     flex: 1,

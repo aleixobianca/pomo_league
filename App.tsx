@@ -14,8 +14,8 @@ import { useFonts as useJerseyFonts } from "@expo-google-fonts/jersey-10";
 import { Jersey10_400Regular } from "@expo-google-fonts/jersey-10/400Regular";
 
 // Importa as telas que vamos usar
-import PaginaPomodoro from "./src/pages/PaginaPomodoro/index10";
-import PaginaPokemonParty from "./src/pages/PaginaPokemonParty";
+import PaginaPomodoro from "./src/pages/Pomodoro/index";
+import PaginaPokemonParty from "./src/pages/PokemonParty";
 import PaginaHome from "./src/pages/Home/index";
 import PaginaLogin from "./src/pages/Login/index";
 import PaginaRegistro from "./src/pages/Registro/index";
